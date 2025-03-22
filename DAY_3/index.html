@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advance Topics</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+  
+    div:not(.mark){
+        border: 1px solid orange;
+    }
+  </style>
+ </head>
+<body>
+
+
+<table>
+  <caption>Student Marks</caption>
+  <colgroup>
+    <col style="background-color:#f2f2f2;">
+    <col style="background-color: orange;" span="2"> 
+    <col >
+  </colgroup>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Math</th>
+      <th scope="col">Science</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">John</th>
+      <td>90</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th scope="row">Jane</th>
+      <td colspan="2">Absent</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>90</td>
+      <td>85</td>
+    </tr>
+  </tfoot>
+</table>
+
+<template id="card-template">
+    <div class="card">
+      <h2 class="title"></h2>
+      <p class="description"></p>
+    </div>
+  </template>
+  
+
+
+<!-- block level elemnts -->
+ <h2>
+    Mark
+ </h2>
+
+ <div class="mark">
+    <h2>
+        weclome2
+    </h2>
+ </div>
+ <div class="mark">
+    <h2>
+        wlecome2
+    </h2>
+ </div>
+ <div>
+    <h2>
+        welcome
+    </h2>
+ </div>
+
+<script>
+    let Name=document.querySelector('.Name')
+    console.log(Name.dataset.userName);
+    console.log(Name.dataset.role);
+</script>
+<script>
+    const template = document.getElementById("card-template");
+    const clone = template.content.cloneNode(true);
+    
+    clone.querySelector(".title").textContent = "Hello Mark!";
+    clone.querySelector(".description").textContent = "This is a reusable card.";
+  
+    document.body.appendChild(clone);
+  </script>
+  
+</body>
+</html>

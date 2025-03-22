@@ -1,0 +1,61 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lilita+One&family=Marck+Script&family=Outfit:wght@100..900&family=Parkinsans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reggae+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Wet+Paint&display=swap');
+body{
+    background: #fefefe;
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+
+}
+nav{
+    background: linear-gradient( rgb(80, 3, 125) ,rgba(68, 0, 78, 0.934));
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 88;
+}
+.grid_container{
+    max-width: 1300px;
+    width: 100%;
+    margin: 5rem auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 2rem;
+    padding: 10px;
+}
+.grid_container img{
+width: 100%;
+border-radius:5px;
+height: 100%;
+box-shadow: 2px 4px 7px rgba(0,0,0.4);
+animation: image_animation 2s infinite ;
+}
+@keyframes image_animation {
+    0%{
+        transform: scale(1.01);
+    }
+    25%{
+        transform: scale(1.02);
+    }
+    50%{
+        transform: scale(1.02);
+    }
+    75%{
+       transform: scale(1.01); 
+    }
+    100%{
+        transform: scale(1.01);
+    }
+}
+.grid_container img:nth-child(odd){
+    grid-row: span 2;
+}
+nav{
+    text-align: center;
+
+}
+nav h2{
+    font-size: clamp(24px,2vw,28px);
+font-weight: bold;
+color: white;
+}
