@@ -1,0 +1,73 @@
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.head h2 {
+    color: #333;
+    font-weight: 600;
+}
+
+.line {
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.input form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.input input.location {
+    padding: 8px 12px;
+    width: 65%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.input button:hover {
+    background-color: #0056b3;
+}
+
+.weatherinfo {
+    margin-top: 25px;
+}
+
+.weatherinfo h2 {
+    font-size: 24
+
+}
