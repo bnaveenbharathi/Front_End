@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Carousel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://via.placeholder.com/800x400/ff7f7f/333333?text=Slide+1" alt="Slide 1">
+
+            <img src="https://via.placeholder.com/800x400/7f7fff/333333?text=Slide+2" alt="Slide 2">
+            
+            <img src="https://via.placeholder.com/800x400/7fff7f/333333?text=Slide+3" alt="Slide 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const images = document.querySelectorAll('.carousel img');
+        const prev = document.querySelector('.prev');
+        const next = document.querySelector('.next');
+        let index = 0;
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        function nextSlide() {
+            index = (index + 1) % images.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + images.length) % images.length;
+            updateCarousel();
+        }
+
+        next.addEventListener('click', nextSlide);
+        prev.addEventListener('click', prevSlide);
+
+        setInterval(nextSlide, 3000); 
+    </script>
+</body>
+
+</html>
