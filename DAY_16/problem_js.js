@@ -18,7 +18,7 @@ function findSubarrayWithSum(arr, target) {
     return [-1];
 }
 
-// Test Cases
+//test cases of all 
 console.log(findSubarrayWithSum([1, 2, 3, 7, 5], 12));       
 console.log(findSubarrayWithSum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15));
 console.log(findSubarrayWithSum([5, 3, 4], 2));
