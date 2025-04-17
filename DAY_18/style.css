@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .game-container {
+    position: relative;
+  }
+  
+  canvas {
+    border: 2px solid #fff;
+    background: #111;
+  }
+  
+  .ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .score, .lives {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .buttons button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .buttons button:hover {
+    background: #555;
+  }
+  

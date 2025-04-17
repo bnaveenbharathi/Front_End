@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shooting Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .game-container {
+      position: relative;
+    }
+
+    canvas {
+      border: 2px solid #fff;
+      background: #111;
+    }
+
+    .ui {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .score, .lives {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .buttons button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      background: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .buttons button:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <canvas id="gameCanvas" width="700" height="500"></canvas>
+    <div class="ui">
+      <div class="score">Score: <span id="score">0</span></div>
+      <div class="lives">Lives: <span id="lives">3</span></div>
+      <div class="buttons">
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="soundBtn">Sound</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const livesEl = document.getElementById('lives');
+
+    let score = 0;
+    let lives = 3;
+    let gameInterval;
+    let keys = {};
+    let bullets = [];
+    let enemies = [];
+    let player = { x: 300, y: 450, width: 40, height: 20 };
+
+    document.getElementById('startBtn').onclick = () => {
+      score = 0;
+      lives = 3;
+      bullets = [];
+      enemies = [{ x: Math.random() * 650, y: 50, width: 30, height: 30 }];
+      updateUI();
+      startGame();
+    };
+
+    document.getElementById('pauseBtn').onclick = togglePause;
+    document.getElementById('soundBtn').onclick = toggleSound;
+
+    function updateUI() {
+      scoreEl.textContent = score;
+      livesEl.textContent = lives;
+    }
+
+    function startGame() {
+      if (gameInterval) clearInterval(gameInterval);
+      gameInterval = setInterval(updateGame, 30);
+    }
+
+    function togglePause() {
+      if (gameInterval) {
+        clearInterval(gameInterval);
+        gameInterval = null;
+      } else {
+        startGame();
+      }
+    }
+
+    function toggleSound() {
+      alert("Sound on/off logic here");
+    }
+
+    function updateGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Move player
+      if (keys['ArrowLeft'] && player.x > 0) player.x -= 5;
+      if (keys['ArrowRight'] && player.x < canvas.width - player.width) player.x += 5;
+
+      // Draw player
+      ctx.fillStyle = "cyan";
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+
+      // Bullets
+      bullets.forEach((b, i) => {
+        b.y -= 7;
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(b.x, b.y, 4, 10);
+        if (b.y < 0) bullets.splice(i, 1);
+      });
+
+      // Enemies
+      enemies.forEach((e, ei) => {
+        e.y += 2;
+        ctx.fillStyle = "red";
+        ctx.fillRect(e.x, e.y, e.width, e.height);
+
+        // Missed enemy
+        if (e.y > canvas.height) {
+          enemies.splice(ei, 1);
+          lives--;
+          updateUI();
+          if (lives <= 0) {
+            alert("Game Over!");
+            clearInterval(gameInterval);
+          } else {
+            enemies.push({ x: Math.random() * 650, y: 0, width: 30, height: 30 });
+          }
+        }
+
+        // Bullet hit detection
+        bullets.forEach((b, bi) => {
+          if (
+            b.x < e.x + e.width &&
+            b.x + 4 > e.x &&
+            b.y < e.y + e.height &&
+            b.y + 10 > e.y
+          ) {
+            bullets.splice(bi, 1);
+            enemies.splice(ei, 1);
+            score++;
+            updateUI();
+            enemies.push({ x: Math.random() * 650, y: 0, width: 30, height: 30 });
+          }
+        });
+      });
+    }
+
+    window.addEventListener("keydown", (e) => {
+      keys[e.key] = true;
+      if (e.key === " ") {
+        bullets.push({ x: player.x + player.width / 2 - 2, y: player.y });
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      keys[e.key] = false;
+    });
+  </script>
+</body>
+</html>
